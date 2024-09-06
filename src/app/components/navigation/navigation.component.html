@@ -1,0 +1,23 @@
+<div class="navigation-container">
+  <mat-toolbar>
+    <button mat-icon-button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
+    <h1 class="navigation-title">{{title()}}</h1>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="sidenav-container" [hasBackdrop]="true">
+    <mat-sidenav #sidenav mode="over" fixedTopGap="56">
+      <mat-nav-list>
+        <div>
+          @for(navItem of navItems; track navItem){
+            <a mat-list-item [routerLink]="navItem.path">{{navItem.name}}</a>
+          }
+        </div>
+        <a class="login-float-end" mat-list-item [routerLink]="'login'">{{'Logowanie'}}</a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <ng-content></ng-content>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
